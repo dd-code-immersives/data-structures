@@ -1,4 +1,6 @@
 
+import random
+
 class Node():
 
 	def __init__(self, data, next_= None, prev_= None):
@@ -122,7 +124,7 @@ class LinkedList():
 		else:
 			curr = self.head
 			while curr:
-				res += curr.data
+				res += str(curr.data)
 
 				# if there is a following element , append a separator
 				if curr.next:
@@ -278,6 +280,30 @@ class DoublyLinkedList(LinkedList):
 		# once we reach the end, return the last value 
 		return itr
 
+	def sort(self):
+		"""	 
+		1. check if empty, if empty, return
+		2. read out elements, save to list 
+		3. sort list 
+		4. re-insert elements 
+		"""
+		vals = []
+
+		# make sure list is not empty
+		if self.is_empty():
+			return []
+
+		# get the values
+		else:
+
+			curr = self.head
+			while curr:
+				vals.append(curr.data)
+				curr = curr.next
+
+		vals.sort()
+		self.insert_values(vals)
+
 
 
 
@@ -286,6 +312,7 @@ if __name__ == '__main__':
 	node_b = Node("B")
 	node_c = Node("C")
 	nodes = [ch for ch in "ABCDE"]
+	nodes2 = [random.randint(1, 20) for num in range(7)]
 
 	# node_a.next = node_b
 	# node_b.next = node_c
@@ -310,21 +337,29 @@ if __name__ == '__main__':
 	# print(linked_list)
 
 	dll = DoublyLinkedList()
-	dll.insert_values(nodes)
+	# dll.insert_values(nodes)
 
+	# print(dll)
+	# #print(dll.length())
+	# dll.insert_at(2, "NEW")
+	# print("inserting new element at index 2")
+	# print(dll)
+	# print("removing element at index 2")
+	# dll.remove_at(2)
+	# print(dll)
+	# print(dll.contains("C"))
+	# print(dll.contains("J"))
+	# dll.remove("C")
+	# dll.remove("A")
+	# print(dll)
+	dll.insert_values(nodes2)
+	print("before sorting")
 	print(dll)
-	#print(dll.length())
-	dll.insert_at(2, "NEW")
-	print("inserting new element at index 2")
+	dll.sort()
+	print("after sorting")
 	print(dll)
-	print("removing element at index 2")
-	dll.remove_at(2)
-	print(dll)
-	print(dll.contains("C"))
-	print(dll.contains("J"))
-	dll.remove("C")
-	dll.remove("A")
-	print(dll)
+
+
 
 	
 
