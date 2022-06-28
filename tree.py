@@ -40,11 +40,11 @@ class Tree:
 
 		# left 
 		if self.left:
-			self.left.pre_order_traversal()
+			self.left.pre_order_traversal(elems)
 
 		# right 
 		if self.right:
-			self.right.pre_order_traversal()
+			self.right.pre_order_traversal(elems)
 		
 		return elems
 
@@ -55,11 +55,11 @@ class Tree:
 
 		# left 
 		if self.left:
-			self.left.post_order_traversal()
+			self.left.post_order_traversal(elems)
 
 		# right 
 		if self.right:
-			self.right.post_order_traversal()
+			self.right.post_order_traversal(elems)
 
 		# root 
 		elems.append(self.data)
@@ -181,6 +181,10 @@ if __name__ == '__main__':
 
 	print(root.is_identical(rooti))
 	print(root.is_identical(root2))
+
+	print(root.pre_order_traversal())
+	print(root.post_order_traversal())
+	print(root.in_order_traversal())
 	# is_found, path = root2.search(8)
 	# print(path)
 
