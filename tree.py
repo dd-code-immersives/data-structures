@@ -9,7 +9,11 @@ class Tree:
 		self.data = data 
 
 
-	def in_order_traversal(self, elems):
+	def in_order_traversal(self, elems=None):
+
+
+		if elems is None:
+			elems = []
 
 		# left 
 		if self.left:
@@ -26,30 +30,36 @@ class Tree:
 		
 
 
-	def pre_order_traversal(self, elems):
+	def pre_order_traversal(self, elems=None):
+
+		if elems is None:
+			elems = []
 
 		# root
 		elems.append(self.data)
 
 		# left 
 		if self.left:
-			self.left.pre_order_traversal(elems)
+			self.left.pre_order_traversal()
 
 		# right 
 		if self.right:
-			self.right.pre_order_traversal(elems)
+			self.right.pre_order_traversal()
 		
 		return elems
 
-	def post_order_traversal(self, elems):
+	def post_order_traversal(self, elems=None):
+
+		if elems is None:
+			elems = []
 
 		# left 
 		if self.left:
-			self.left.post_order_traversal(elems)
+			self.left.post_order_traversal()
 
 		# right 
 		if self.right:
-			self.right.post_order_traversal(elems)
+			self.right.post_order_traversal()
 
 		# root 
 		elems.append(self.data)
@@ -59,11 +69,11 @@ class Tree:
 	def traverse(self, algo="pre"):
 
 		if algo == "pre":
-			res = self.pre_order_traversal(elems=[])
+			res = self.pre_order_traversal()
 		elif algo == "post":
-			res =  self.post_order_traversal(elems=[])
+			res =  self.post_order_traversal()
 		else:
-			res = self.in_order_traversal(elems=[])
+			res = self.in_order_traversal()
 		return res
 
 	def insert(self, data):
