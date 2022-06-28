@@ -24,8 +24,6 @@ class Tree:
 
 		return self.in_order_traversal()[0]
 
-
-
 	def get_max_val(self):
 
 		max_val = -1
@@ -110,14 +108,17 @@ class Tree:
 
 	def insert(self, data):
 
+		# self.data  = 3, data = 6
 		if self.data:
 
-			# i.e. 3 < 8
+			# i.e. 6 < 3
 			if data < self.data:
 
 				if not self.left:
 					self.left = Tree(data)
 				else:
+					# self.left.insert(6)
+					# self.left = 3
 					self.left.insert(data)
 
 			# i.e. 10 > 8
@@ -176,6 +177,22 @@ class Tree:
 	def is_identical(self, tree2):
 		return self.traverse() == tree2.traverse()
 
+	def is_full_tree(self):
+
+		# BASE CASE 
+
+		# if both are None, we are either at the bottom of the tree
+		# or the root has no children 
+		if not self.left and not self.right:
+			return True 
+
+		# the node has two children , keep checking each recursively
+		if self.left and self.right:
+			return self.left.is_full_tree() and self.right.is_full_tree()
+
+		# if self.left and not self.right return false
+		return False
+
 	def __str__(self):
 
 		res = self.traverse()
@@ -189,38 +206,65 @@ if __name__ == '__main__':
 
 	
 	# nodes = [i for i in range(1, 11)]
-	root = Tree(2)
-	root.insert(1)
-	root.insert(3)
-	root.insert(4)
-	root.insert(6)
+	# root = Tree(2)
+	# root.insert(1)
+	# root.insert(3)
+	# root.insert(4)
+	# root.insert(6)
 
-	rooti = Tree(2)
-	rooti.insert(1)
-	rooti.insert(3)
-	rooti.insert(4)
-	rooti.insert(6)
+	# rooti = Tree(2)
+	# rooti.insert(1)
+	# rooti.insert(3)
+	# rooti.insert(4)
+	# rooti.insert(6)
 
-	# is_found, path = root.search(6)
-	# print(path)
-
-
-	root2 = Tree(9)
-	root2.insert(5)
-	root2.insert(7)
-	root2.insert(8)
+	# # is_found, path = root.search(6)
+	# # print(path)
 
 
-	print(root.is_identical(rooti))
-	print(root.is_identical(root2))
+	# root2 = Tree(9)
+	# root2.insert(5)
+	# root2.insert(7)
+	# root2.insert(8)
 
-	# print(root.pre_order_traversal())
-	# print(root.post_order_traversal())
+	# root3 = Tree(8)
+	# root3.insert(3)
+	# root3.insert(10)
+	# root3.insert(6)
+	# print(root3.traverse())
+
+	# root4 = Tree(8)
+	# root4.left = Tree(3)
+	# root4.right = Tree(10)
+	# root4.left.right = Tree(6)
+	# print(root4.traverse())
+
+
+	# if root3.is_identical(root4):
+	# 	print("trees are identical")
+	# else:
+	# 	print("not identical")
+
+	# root = Tree(10)
+	# root.insert(12)
+	# root.insert(25)
+	# root.insert(30)
+	# root.insert(15)
+	# root.insert(36)
 	# print(root.in_order_traversal())
-	print(root.get_min_val_t())
-	print(root.get_min_val())
-	print(root.get_max_val_t())
-	print(root.get_max_val())
+
+
+
+	# print(root.is_identical(rooti))
+	# print(root.is_identical(root2))
+
+	# # print(root.pre_order_traversal())
+	# # print(root.post_order_traversal())
+	# # print(root.in_order_traversal())
+	# print(root.get_min_val_t())
+	# print(root.get_min_val())
+	# print(root.get_max_val_t())
+	# print(root.get_max_val())
 	# is_found, path = root2.search(8)
 	# print(path)
 
@@ -236,3 +280,36 @@ if __name__ == '__main__':
 	# print(root.get_level(20))
 	#print(root.traverse())
 	#print(root)
+
+	tree = Tree(2)
+	tree.left = Tree(1)
+	tree.right = Tree(3) 
+
+	print(tree.in_order_traversal())
+	print(tree.pre_order_traversal())
+	print(tree.post_order_traversal())
+
+	print(tree)
+	print(f"is full tree: { tree.is_full_tree() }")
+
+	tree = None
+
+	tree = Tree(8)
+	tree.left = Tree(3)
+	tree.left.left = Tree(1)
+	tree.left.right = Tree(6)
+	tree.left.right.left = Tree(4)
+	tree.left.right.right = Tree(7)
+	tree.right = Tree(10)
+	tree.right.right = Tree(14)
+	tree.right.right.left = Tree(13)
+
+	print(tree)
+	print(f"is full tree: { tree.is_full_tree() }")
+
+
+	# print(tree.in_order_traversal())
+	# print(tree.pre_order_traversal())
+	# print(tree.post_order_traversal())
+
+
