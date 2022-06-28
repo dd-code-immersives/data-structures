@@ -193,6 +193,24 @@ class Tree:
 		# if self.left and not self.right return false
 		return False
 
+	def has_child_sum_property(self):
+
+		if not self.left and not self.right:
+			return True 
+
+		left, right = 0,0
+		if self.right:
+			right = self.right.data
+		if self.left:
+			left = self.left.data
+
+		if right + left == self.data:
+			return self.left.has_child_sum_property() and self.right.has_child_sum_property()
+
+		return False
+
+
+
 	def __str__(self):
 
 		res = self.traverse()
