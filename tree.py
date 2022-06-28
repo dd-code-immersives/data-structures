@@ -9,6 +9,38 @@ class Tree:
 		self.data = data 
 
 
+	def get_min_val(self):
+
+		min_val = -1
+		curr = None
+		curr = self.left 
+		while curr:
+			min_val = curr.data
+			curr = curr.left
+		return min_val
+
+
+	def get_min_val_t(self):
+
+		return self.in_order_traversal()[0]
+
+
+
+	def get_max_val(self):
+
+		max_val = -1
+		curr = None
+		curr = self.right
+		while curr:
+			max_val = curr.data
+			curr = curr.right
+		return max_val
+
+	def get_max_val_t(self):
+
+		return self.in_order_traversal()[-1]
+
+
 	def in_order_traversal(self, elems=None):
 
 
@@ -182,9 +214,13 @@ if __name__ == '__main__':
 	print(root.is_identical(rooti))
 	print(root.is_identical(root2))
 
-	print(root.pre_order_traversal())
-	print(root.post_order_traversal())
-	print(root.in_order_traversal())
+	# print(root.pre_order_traversal())
+	# print(root.post_order_traversal())
+	# print(root.in_order_traversal())
+	print(root.get_min_val_t())
+	print(root.get_min_val())
+	print(root.get_max_val_t())
+	print(root.get_max_val())
 	# is_found, path = root2.search(8)
 	# print(path)
 
